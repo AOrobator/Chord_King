@@ -31,7 +31,7 @@ class BuildAChordViewModel : BaseViewModel<BuildAChordViewState>(
     }
 
     fun onDoneClick() {
-        val chordTones = viewState.chordToBuild.notes()
+        val chordTones = viewState.chordToBuild.chordTones()!!
         val enteredNotes = viewState.enteredNotes
 
         if (chordTones == enteredNotes) {
@@ -45,7 +45,7 @@ class BuildAChordViewModel : BaseViewModel<BuildAChordViewState>(
             }
 
             var newChord = viewState.chordToBuild
-            while (newChord == viewState.chordToBuild) {
+            while (newChord == viewState.chordToBuild || newChord.chordTones() == null) {
                 val newKey = majorScales.keys.random()
                 val quality = ChordQuality.values().random()
                 newChord = Chord(key = newKey, quality = quality)

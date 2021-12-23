@@ -28,15 +28,30 @@ data class Chord(
 ) {
     val name: String = key.noteName + quality.qualityName
 
-    fun notes(): List<Note> {
-        val majorScale: List<Note> = majorScales[key]!!
-        return quality.getChordTones(majorScale)
+    fun chordTones(): List<Note>? {
+        return quality.getChordTones(key)
     }
 }
 
 val majorScales = mapOf(
-    NoteCSharp to listOf(NoteCSharp, NoteDSharp, NoteESharp, NoteFSharp, NoteGSharp, NoteASharp, NoteBSharp),
-    NoteFSharp to listOf(NoteFSharp, NoteGSharp, NoteASharp, NoteB, NoteCSharp, NoteDSharp, NoteESharp),
+    NoteCSharp to listOf(
+        NoteCSharp,
+        NoteDSharp,
+        NoteESharp,
+        NoteFSharp,
+        NoteGSharp,
+        NoteASharp,
+        NoteBSharp
+    ),
+    NoteFSharp to listOf(
+        NoteFSharp,
+        NoteGSharp,
+        NoteASharp,
+        NoteB,
+        NoteCSharp,
+        NoteDSharp,
+        NoteESharp
+    ),
     NoteB to listOf(NoteB, NoteCSharp, NoteDSharp, NoteE, NoteFSharp, NoteGSharp, NoteASharp),
     NoteE to listOf(NoteE, NoteFSharp, NoteGSharp, NoteA, NoteB, NoteCSharp, NoteDSharp),
     NoteA to listOf(NoteA, NoteB, NoteCSharp, NoteD, NoteE, NoteFSharp, NoteGSharp),
@@ -51,39 +66,85 @@ val majorScales = mapOf(
     NoteAFlat to listOf(NoteAFlat, NoteBFlat, NoteC, NoteDFlat, NoteEFlat, NoteF, NoteG),
     NoteDFlat to listOf(NoteDFlat, NoteEFlat, NoteF, NoteGFlat, NoteAFlat, NoteBFlat, NoteC),
     NoteGFlat to listOf(NoteGFlat, NoteAFlat, NoteBFlat, NoteCFlat, NoteDFlat, NoteEFlat, NoteF),
-    NoteCFlat to listOf(NoteCFlat, NoteDFlat, NoteEFlat, NoteFFlat, NoteGFlat, NoteAFlat, NoteBFlat),
+    NoteCFlat to listOf(
+        NoteCFlat,
+        NoteDFlat,
+        NoteEFlat,
+        NoteFFlat,
+        NoteGFlat,
+        NoteAFlat,
+        NoteBFlat
+    ),
 )
+
+val minorScales = mapOf(
+    NoteCSharp to majorScales[NoteE]!!.toRelativeMinor(),
+    NoteFSharp to majorScales[NoteA]!!.toRelativeMinor(),
+    NoteB to majorScales[NoteD]!!.toRelativeMinor(),
+    NoteE to majorScales[NoteG]!!.toRelativeMinor(),
+    NoteA to majorScales[NoteC]!!.toRelativeMinor(),
+    NoteD to majorScales[NoteF]!!.toRelativeMinor(),
+    NoteG to majorScales[NoteBFlat]!!.toRelativeMinor(),
+
+    NoteC to majorScales[NoteEFlat]!!.toRelativeMinor(),
+
+    NoteF to majorScales[NoteAFlat]!!.toRelativeMinor(),
+    NoteBFlat to majorScales[NoteDFlat]!!.toRelativeMinor(),
+    NoteEFlat to majorScales[NoteGFlat]!!.toRelativeMinor(),
+    NoteAFlat to majorScales[NoteCFlat]!!.toRelativeMinor(),
+    NoteDFlat to null, // The following scales have too many flats so they're not used
+    NoteGFlat to null,
+    NoteCFlat to null,
+)
+
+fun List<Note>.toRelativeMinor(): List<Note> {
+    return slice(5..6) + slice(0..4)
+}
 
 enum class ChordQuality(val qualityName: String) {
     Major("Maj") {
-        override fun getChordTones(scale: List<Note>): List<Note> {
-            checkScale(scale)
-            val root = scale[0]
-            val majorThird = scale[2]
-            val perfectFifth = scale[4]
+        override fun getChordTones(key: Note): List<Note> {
+            val majorScale = majorScales[key]!!
+            val root = majorScale[0]
+            val majorThird = majorScale[2]
+            val perfectFifth = majorScale[4]
             return listOf(root, majorThird, perfectFifth)
         }
     },
-//    Minor("m"),
-//    Diminished("dim"),
+    Minor("m") {
+        override fun getChordTones(key: Note): List<Note>? {
+            val minorScale = minorScales[key] ?: return null
+            val root = minorScale[0]
+            val minorThird = minorScale[2]
+            val perfectFifth = minorScale[4]
+            return listOf(root, minorThird, perfectFifth)
+        }
+    },
+
+    //    Diminished("dim"),
 //    Augmented("aug"),
     Major7("maj7") {
-    override fun getChordTones(scale: List<Note>): List<Note> {
-        checkScale(scale)
-        val root = scale[0]
-        val majorThird = scale[2]
-        val perfectFifth = scale[4]
-        val majorSeventh = scale[6]
-        return listOf(root, majorThird, perfectFifth, majorSeventh)
-    }
-};
-//    Minor7("min7"),
+        override fun getChordTones(key: Note): List<Note> {
+            val majorScale = majorScales[key]!!
+            val root = majorScale[0]
+            val majorThird = majorScale[2]
+            val perfectFifth = majorScale[4]
+            val majorSeventh = majorScale[6]
+            return listOf(root, majorThird, perfectFifth, majorSeventh)
+        }
+    },
+    Minor7("min7") {
+        override fun getChordTones(key: Note): List<Note>? {
+            val minorScale = minorScales[key] ?: return null
+            val root = minorScale[0]
+            val minorThird = minorScale[2]
+            val perfectFifth = minorScale[4]
+            val minorSeventh = minorScale[6]
+            return listOf(root, minorThird, perfectFifth, minorSeventh)
+        }
+    };
 //    Dominant7("7"),
 //    MinorMajor7("minMaj7");
 
-    abstract fun getChordTones(scale: List<Note>): List<Note>
-
-    protected fun checkScale(scale: List<Note>) {
-        require(scale.size == 7) { "Scale has ${scale.size} notes, needs 7" }
-    }
+    abstract fun getChordTones(key: Note): List<Note>?
 }
