@@ -22,6 +22,7 @@ import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import com.google.accompanist.flowlayout.FlowRow
 import com.google.accompanist.flowlayout.MainAxisAlignment
+import com.orobator.chordking.Note
 import com.orobator.chordking.ui.components.ChordKingScaffold
 import com.orobator.chordking.ui.theme.ChordKingTheme
 import com.orobator.chordking.ui.theme.Colors

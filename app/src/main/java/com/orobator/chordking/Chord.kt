@@ -1,26 +1,26 @@
-package com.orobator.chordking.buildChord
+package com.orobator.chordking
 
-import com.orobator.chordking.buildChord.Note.NoteA
-import com.orobator.chordking.buildChord.Note.NoteAFlat
-import com.orobator.chordking.buildChord.Note.NoteASharp
-import com.orobator.chordking.buildChord.Note.NoteB
-import com.orobator.chordking.buildChord.Note.NoteBFlat
-import com.orobator.chordking.buildChord.Note.NoteBSharp
-import com.orobator.chordking.buildChord.Note.NoteC
-import com.orobator.chordking.buildChord.Note.NoteCFlat
-import com.orobator.chordking.buildChord.Note.NoteCSharp
-import com.orobator.chordking.buildChord.Note.NoteD
-import com.orobator.chordking.buildChord.Note.NoteDFlat
-import com.orobator.chordking.buildChord.Note.NoteDSharp
-import com.orobator.chordking.buildChord.Note.NoteE
-import com.orobator.chordking.buildChord.Note.NoteEFlat
-import com.orobator.chordking.buildChord.Note.NoteESharp
-import com.orobator.chordking.buildChord.Note.NoteF
-import com.orobator.chordking.buildChord.Note.NoteFFlat
-import com.orobator.chordking.buildChord.Note.NoteFSharp
-import com.orobator.chordking.buildChord.Note.NoteG
-import com.orobator.chordking.buildChord.Note.NoteGFlat
-import com.orobator.chordking.buildChord.Note.NoteGSharp
+import com.orobator.chordking.Note.NoteA
+import com.orobator.chordking.Note.NoteAFlat
+import com.orobator.chordking.Note.NoteASharp
+import com.orobator.chordking.Note.NoteB
+import com.orobator.chordking.Note.NoteBFlat
+import com.orobator.chordking.Note.NoteBSharp
+import com.orobator.chordking.Note.NoteC
+import com.orobator.chordking.Note.NoteCFlat
+import com.orobator.chordking.Note.NoteCSharp
+import com.orobator.chordking.Note.NoteD
+import com.orobator.chordking.Note.NoteDFlat
+import com.orobator.chordking.Note.NoteDSharp
+import com.orobator.chordking.Note.NoteE
+import com.orobator.chordking.Note.NoteEFlat
+import com.orobator.chordking.Note.NoteESharp
+import com.orobator.chordking.Note.NoteF
+import com.orobator.chordking.Note.NoteFFlat
+import com.orobator.chordking.Note.NoteFSharp
+import com.orobator.chordking.Note.NoteG
+import com.orobator.chordking.Note.NoteGFlat
+import com.orobator.chordking.Note.NoteGSharp
 
 data class Chord(
     val key: Note,

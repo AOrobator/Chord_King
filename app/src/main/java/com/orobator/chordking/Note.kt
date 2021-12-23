@@ -1,4 +1,4 @@
-package com.orobator.chordking.buildChord
+package com.orobator.chordking
 
 enum class Note(
     val noteName: String
