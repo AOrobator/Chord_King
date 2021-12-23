@@ -1,30 +1,57 @@
 package com.orobator.chordking.navigation
 
+import androidx.compose.animation.ExperimentalAnimationApi
+import androidx.compose.animation.slideInHorizontally
+import androidx.compose.animation.slideOutHorizontally
 import androidx.compose.runtime.Composable
-import androidx.navigation.compose.NavHost
-import androidx.navigation.compose.composable
-import androidx.navigation.compose.rememberNavController
+import com.google.accompanist.navigation.animation.AnimatedNavHost
+import com.google.accompanist.navigation.animation.composable
+import com.google.accompanist.navigation.animation.rememberAnimatedNavController
 import com.orobator.chordking.buildChord.BuildAChordScreen
 import com.orobator.chordking.home.ChordKingHomeScreen
 import com.orobator.chordking.nameChord.NameThatChordScreen
 
+
+@ExperimentalAnimationApi
 @Composable
 fun ChordKingNavHost() {
-    val navController = rememberNavController()
-    NavHost(
+    val navController = rememberAnimatedNavController()
+    AnimatedNavHost(
         navController = navController,
         startDestination = Destinations.Home.name
     ) {
-        composable(Destinations.Home.name) {
+        composable(
+            Destinations.Home.name,
+            enterTransition = {
+                slideInHorizontally(initialOffsetX = { -1000 })
+            },
+            exitTransition = {
+                slideOutHorizontally(targetOffsetX = { -it })
+            }
+        ) {
             ChordKingHomeScreen(
                 onBuildChordClick = { navController.navigate(Destinations.BuildAChord.name) },
                 onNameChordClick = { navController.navigate(Destinations.NameThatChord.name) }
             )
         }
 
-        composable(Destinations.BuildAChord.name) { BuildAChordScreen() }
+        composable(
+            Destinations.BuildAChord.name,
+            enterTransition = {
+                slideInHorizontally(initialOffsetX = { 1000 })
+            }
+        ) {
+            BuildAChordScreen()
+        }
 
-        composable(Destinations.NameThatChord.name) { NameThatChordScreen() }
+        composable(
+            Destinations.NameThatChord.name,
+            enterTransition = {
+                slideInHorizontally(initialOffsetX = { 1000 })
+            }
+        ) {
+            NameThatChordScreen()
+        }
     }
 }
 

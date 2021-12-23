@@ -3,12 +3,14 @@ package com.orobator.chordking
 import android.os.Bundle
 import androidx.activity.ComponentActivity
 import androidx.activity.compose.setContent
+import androidx.compose.animation.ExperimentalAnimationApi
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.tooling.preview.Preview
 import com.orobator.chordking.home.ChordKingHomeScreen
 import com.orobator.chordking.navigation.ChordKingNavHost
 import com.orobator.chordking.ui.theme.ChordKingTheme
 
+@ExperimentalAnimationApi
 class MainActivity : ComponentActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)

@@ -1,4 +1,9 @@
 object Libs {
+    object Accompanist {
+        const val version = "0.22.0-rc"
+        const val navigationAnimation =  "com.google.accompanist:accompanist-navigation-animation:$version"
+    }
+
     object Compose {
         const val version = "1.1.0-beta03"
         const val activity = "androidx.activity:activity-compose:1.4.0"
