@@ -16,7 +16,9 @@ import com.orobator.chordking.nameChord.NameThatChordScreen
 
 @ExperimentalAnimationApi
 @Composable
-fun ChordKingNavHost() {
+fun ChordKingNavHost(
+    buildAChordViewModel: BuildAChordViewModel
+) {
     val navController = rememberAnimatedNavController()
     AnimatedNavHost(
         navController = navController,
@@ -46,11 +48,13 @@ fun ChordKingNavHost() {
                 slideOutHorizontally(targetOffsetX = { it })
             }
         ) {
-            val viewModel = BuildAChordViewModel()
-            val viewState by viewModel.viewStates
+            val viewState by buildAChordViewModel.viewStates
             BuildAChordScreen(
                 viewState = viewState,
-                onBack = { navController.navigateUp() }
+                onBack = { navController.navigateUp() },
+                onNoteClick = buildAChordViewModel::onNoteClick,
+                onDoneClick = buildAChordViewModel::onDoneClick,
+                onDeleteNoteClick = buildAChordViewModel::onDeleteNote
             )
         }
 

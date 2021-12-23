@@ -7,6 +7,8 @@
 
     <string name="build_a_chord_title">🛠 Build a chord</string>
     <string name="build_a_chord_prompt">Build: <i>%s</i></string>
+    <string name="build_a_chord_delete_note">Delete</string>
+    <string name="build_a_chord_done">Done</string>
 
     <string name="name_that_chord_title">🧐 Name that chord</string>
 </resources>

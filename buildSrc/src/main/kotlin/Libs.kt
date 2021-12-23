@@ -18,5 +18,19 @@ object Libs {
         const val uiToolingPreview = "androidx.compose.ui:ui-tooling-preview:$version"
     }
 
+    object Dagger {
+        private const val version = "2.36"
+        const val hiltAndroid = "com.google.dagger:hilt-android:$version"
+        const val hiltCompiler = "com.google.dagger:hilt-compiler:$version"
+    }
+
+    object Hilt {
+        private const val version = "1.0.0"
+        const val viewmodel = "androidx.hilt:hilt-lifecycle-viewmodel:1.0.0-alpha03"
+        const val compiler = "androidx.hilt:hilt-compiler:$version"
+        const val navigationCompose = "androidx.hilt:hilt-navigation-compose:1.0.0-alpha03"
+    }
+
+
     const val timber = "com.jakewharton.timber:timber:4.7.1"
 }

@@ -29,6 +29,9 @@ import com.orobator.chordking.ui.theme.Strings
 @Composable
 fun BuildAChordScreen(
     viewState: BuildAChordViewState,
+    onNoteClick: (Note) -> Unit,
+    onDeleteNoteClick: () -> Unit,
+    onDoneClick: () -> Unit,
     onBack: () -> Unit
 ) {
     ChordKingTheme {
@@ -52,8 +55,9 @@ fun BuildAChordScreen(
                     modifier = Modifier
                         .fillMaxWidth()
                         .background(color = Colors.buildAChordBackgroundColor)
-                        .padding(56.dp),
-                    text = "Placeholder for chord entry",
+                        .padding(24.dp),
+                    text = viewState.enteredNotes.joinToString { it.noteName },
+                    fontSize = 42.sp,
                     color = Color.White,
                     textAlign = TextAlign.Center
                 )
@@ -62,7 +66,10 @@ fun BuildAChordScreen(
                     modifier = Modifier
                         .fillMaxWidth()
                         .weight(1f)
-                        .padding(16.dp)
+                        .padding(16.dp),
+                    onDeleteNoteClick = onDeleteNoteClick,
+                    onDoneClick = onDoneClick,
+                    onNoteClick = onNoteClick
                 )
             }
         }
@@ -70,20 +77,35 @@ fun BuildAChordScreen(
 }
 
 @Composable
-private fun NoteEntryPad(modifier: Modifier) {
+private fun NoteEntryPad(
+    modifier: Modifier,
+    onNoteClick: (Note) -> Unit,
+    onDeleteNoteClick: () -> Unit,
+    onDoneClick: () -> Unit
+) {
     FlowRow(
         modifier = modifier,
         mainAxisSpacing = 24.dp,
         mainAxisAlignment = MainAxisAlignment.SpaceEvenly,
-        crossAxisSpacing = 24.dp
+        crossAxisSpacing = 20.dp
     ) {
         for (note in Note.values()) {
             Button(
                 modifier = Modifier.width(64.dp),
-                onClick = { /*TODO*/ }
+                onClick = {
+                    onNoteClick(note)
+                }
             ) {
                 Text(text = note.noteName)
             }
+        }
+
+        Button(onClick = onDeleteNoteClick) {
+            Text(text = stringResource(Strings.build_a_chord_delete_note))
+        }
+
+        Button(onClick = onDoneClick) {
+            Text(text = stringResource(Strings.build_a_chord_done))
         }
     }
 }
