@@ -47,25 +47,14 @@ fun ChordKingHomeScreen(
                 ),
                 verticalArrangement = Arrangement.Absolute.spacedBy(32.dp)
             ) {
-                val buildAChordBackgroundColor = if (isSystemInDarkTheme()) {
-                    Colors.DeepPurple400
-                } else {
-                    Colors.Purple300
-                }
                 HomeSelectionCard(
                     text = stringResource(Strings.home_screen_build_a_chord),
-                    backgroundColor = buildAChordBackgroundColor,
+                    backgroundColor = Colors.buildAChordBackgroundColor,
                     onClick = onBuildChordClick,
                 )
-
-                val nameThatChordBackgroundColor = if (isSystemInDarkTheme()) {
-                    Colors.Blue400
-                } else {
-                    Colors.Blue300
-                }
                 HomeSelectionCard(
                     text = stringResource(Strings.home_screen_name_that_chord),
-                    backgroundColor = nameThatChordBackgroundColor,
+                    backgroundColor = Colors.nameThatChordBackgroundColor,
                     onClick = onNameChordClick
                 )
             }
