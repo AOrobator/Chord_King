@@ -22,7 +22,10 @@ android {
     buildTypes {
         release {
             isMinifyEnabled = false
-            proguardFiles(getDefaultProguardFile("proguard-android-optimize.txt"), "proguard-rules.pro")
+            proguardFiles(
+                getDefaultProguardFile("proguard-android-optimize.txt"),
+                "proguard-rules.pro"
+            )
         }
     }
     compileOptions {
@@ -33,7 +36,7 @@ android {
         jvmTarget = "1.8"
     }
     buildFeatures {
-        compose  = true
+        compose = true
     }
     composeOptions {
         kotlinCompilerExtensionVersion = Libs.Compose.version
@@ -47,11 +50,14 @@ dependencies {
 
     implementation(Libs.Accompanist.flowLayout)
     implementation(Libs.Accompanist.navigationAnimation)
+
     implementation(Libs.Compose.activity)
     implementation(Libs.Compose.material)
     implementation(Libs.Compose.navigation)
     implementation(Libs.Compose.ui)
     implementation(Libs.Compose.uiToolingPreview)
+
+    implementation(Libs.timber)
 
     implementation("androidx.lifecycle:lifecycle-runtime-ktx:2.4.0")
 }

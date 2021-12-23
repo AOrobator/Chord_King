@@ -4,10 +4,12 @@ import androidx.compose.animation.ExperimentalAnimationApi
 import androidx.compose.animation.slideInHorizontally
 import androidx.compose.animation.slideOutHorizontally
 import androidx.compose.runtime.Composable
+import androidx.compose.runtime.getValue
 import com.google.accompanist.navigation.animation.AnimatedNavHost
 import com.google.accompanist.navigation.animation.composable
 import com.google.accompanist.navigation.animation.rememberAnimatedNavController
 import com.orobator.chordking.buildChord.BuildAChordScreen
+import com.orobator.chordking.buildChord.BuildAChordViewModel
 import com.orobator.chordking.home.ChordKingHomeScreen
 import com.orobator.chordking.nameChord.NameThatChordScreen
 
@@ -44,7 +46,10 @@ fun ChordKingNavHost() {
                 slideOutHorizontally(targetOffsetX = { it })
             }
         ) {
+            val viewModel = BuildAChordViewModel()
+            val viewState by viewModel.viewStates
             BuildAChordScreen(
+                viewState = viewState,
                 onBack = { navController.navigateUp() }
             )
         }

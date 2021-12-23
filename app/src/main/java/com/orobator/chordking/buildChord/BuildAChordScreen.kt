@@ -22,13 +22,13 @@ import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import com.google.accompanist.flowlayout.FlowRow
 import com.google.accompanist.flowlayout.MainAxisAlignment
-import com.orobator.chordking.buildChord.Note.NoteEFlat
 import com.orobator.chordking.ui.theme.ChordKingTheme
 import com.orobator.chordking.ui.theme.Colors
 import com.orobator.chordking.ui.theme.Strings
 
 @Composable
 fun BuildAChordScreen(
+    viewState: BuildAChordViewState,
     onBack: () -> Unit
 ) {
     ChordKingTheme {
@@ -40,7 +40,10 @@ fun BuildAChordScreen(
                     modifier = Modifier
                         .fillMaxWidth()
                         .padding(24.dp),
-                    text = stringResource(Strings.build_a_chord_prompt, NoteEFlat.noteName),
+                    text = stringResource(
+                        Strings.build_a_chord_prompt,
+                        viewState.chordToBuild.name
+                    ),
                     textAlign = TextAlign.Center,
                     fontSize = 32.sp,
                 )

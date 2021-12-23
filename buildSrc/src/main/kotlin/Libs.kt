@@ -17,4 +17,6 @@ object Libs {
         const val uiTooling = "androidx.compose.ui:ui-tooling:$version"
         const val uiToolingPreview = "androidx.compose.ui:ui-tooling-preview:$version"
     }
+
+    const val timber = "com.jakewharton.timber:timber:4.7.1"
 }
