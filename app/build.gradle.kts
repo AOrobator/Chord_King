@@ -44,9 +44,12 @@ dependencies {
     implementation("androidx.core:core-ktx:1.7.0")
     implementation("androidx.appcompat:appcompat:1.4.0")
     implementation("com.google.android.material:material:1.4.0")
-    implementation(Libs.Compose.ui)
+
+    implementation(Libs.Compose.activity)
     implementation(Libs.Compose.material)
+    implementation(Libs.Compose.navigation)
+    implementation(Libs.Compose.ui)
     implementation(Libs.Compose.uiToolingPreview)
+
     implementation("androidx.lifecycle:lifecycle-runtime-ktx:2.4.0")
-    implementation("androidx.activity:activity-compose:1.4.0")
 }
