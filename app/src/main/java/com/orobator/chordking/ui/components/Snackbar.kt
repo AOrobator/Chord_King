@@ -1,6 +1,5 @@
 package com.orobator.chordking.ui.components
 
-import androidx.compose.foundation.isSystemInDarkTheme
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.Row
 import androidx.compose.foundation.layout.Spacer
@@ -55,6 +54,7 @@ fun ErrorSnackbar(
             Text(
                 text = stringResource(id = errorMessage.titleRes),
                 style = ChordKingTypography.h4,
+                color = Color.White,
                 modifier = Modifier.weight(1f)
             )
         }
@@ -80,18 +80,13 @@ fun InfoSnackbar(
         Column(
             modifier = Modifier.fillMaxWidth()
         ) {
-            val textColor = if (isSystemInDarkTheme()) {
-                Color.Black
-            } else {
-                Color.White
-            }
             Text(
                 text = stringResource(infoMessage.titleRes),
                 style = ChordKingTypography.h4,
-                color = textColor
+                color = Color.White,
             )
             infoMessage.descriptionRes?.let {
-                Text(text = stringResource(it), color = textColor)
+                Text(text = stringResource(it), color = Color.White)
             }
         }
     }
