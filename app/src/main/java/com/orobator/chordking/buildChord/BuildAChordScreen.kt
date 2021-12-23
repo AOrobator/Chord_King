@@ -1,13 +1,14 @@
 package com.orobator.chordking.buildChord
 
-import androidx.compose.foundation.background
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.width
 import androidx.compose.material.Button
+import androidx.compose.material.Divider
 import androidx.compose.material.Icon
 import androidx.compose.material.IconButton
+import androidx.compose.material.MaterialTheme
 import androidx.compose.material.Text
 import androidx.compose.material.TopAppBar
 import androidx.compose.material.icons.Icons
@@ -55,12 +56,15 @@ fun BuildAChordScreen(
                 Text(
                     modifier = Modifier
                         .fillMaxWidth()
-                        .background(color = Colors.buildAChordBackgroundColor)
                         .padding(24.dp),
                     text = viewState.enteredNotes.joinToString { it.noteName },
                     fontSize = 42.sp,
-                    color = Color.White,
                     textAlign = TextAlign.Center
+                )
+
+                Divider(
+                    modifier = Modifier.padding(horizontal = 16.dp),
+                    color = MaterialTheme.colors.primary
                 )
 
                 NoteEntryPad(
