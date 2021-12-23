@@ -6,15 +6,18 @@ import androidx.compose.material.TopAppBar
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.res.stringResource
+import com.orobator.chordking.ui.theme.ChordKingTheme
 import com.orobator.chordking.ui.theme.Colors
 import com.orobator.chordking.ui.theme.Strings
 
 @Composable
 fun NameThatChordScreen() {
-    Scaffold(
-        topBar = { NameThatChordAppBar() }
-    ) {
+    ChordKingTheme {
+        Scaffold(
+            topBar = { NameThatChordAppBar() }
+        ) {
 
+        }
     }
 }
 
