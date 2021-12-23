@@ -1,4 +1,4 @@
-package com.orobator.chordking.buildChord
+package com.orobator.chordking.nameChord
 
 import androidx.compose.material.Scaffold
 import androidx.compose.material.Text
@@ -8,10 +8,10 @@ import androidx.compose.ui.res.stringResource
 import com.orobator.chordking.ui.theme.Strings
 
 @Composable
-fun BuildAChordScreen() {
+fun NameThatChordScreen() {
     Scaffold(
         topBar = {
-            TopAppBar(title = { Text(text = stringResource(Strings.build_a_chord_title)) })
+            TopAppBar(title = { Text(text = stringResource(Strings.name_that_chord_title)) })
         }
     ) {
 

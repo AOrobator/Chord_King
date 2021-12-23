@@ -6,6 +6,7 @@ import androidx.activity.compose.setContent
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.tooling.preview.Preview
 import com.orobator.chordking.home.ChordKingHomeScreen
+import com.orobator.chordking.navigation.ChordKingNavHost
 import com.orobator.chordking.ui.theme.ChordKingTheme
 
 class MainActivity : ComponentActivity() {
@@ -13,7 +14,7 @@ class MainActivity : ComponentActivity() {
         super.onCreate(savedInstanceState)
         setContent {
             ChordKingTheme {
-                ChordKingHomeScreen()
+                ChordKingNavHost()
             }
         }
     }
@@ -23,6 +24,9 @@ class MainActivity : ComponentActivity() {
 @Composable
 fun DefaultPreview() {
     ChordKingTheme {
-        ChordKingHomeScreen()
+        ChordKingHomeScreen(
+            onNameChordClick = {},
+            onBuildChordClick = {}
+        )
     }
 }

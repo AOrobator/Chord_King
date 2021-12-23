@@ -1,6 +1,9 @@
 <resources>
     <string name="app_name">Chord King</string>
 
-    <string name="build_a_chord">🔨 Build a chord</string>
-    <string name="name_that_chord">🧐 Build a chord</string>
+    <string name="home_screen_build_a_chord">🛠\n\nBuild a chord</string>
+    <string name="home_screen_name_that_chord">🧐\n\nName that chord</string>
+
+    <string name="build_a_chord_title">🛠 Build a chord</string>
+    <string name="name_that_chord_title">🧐 Name that chord</string>
 </resources>

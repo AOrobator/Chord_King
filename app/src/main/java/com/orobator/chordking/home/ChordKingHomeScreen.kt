@@ -24,6 +24,7 @@ import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.res.stringResource
+import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import com.orobator.chordking.ui.theme.Colors
@@ -31,7 +32,10 @@ import com.orobator.chordking.ui.theme.Strings
 
 
 @Composable
-fun ChordKingHomeScreen() {
+fun ChordKingHomeScreen(
+    onBuildChordClick: () -> Unit,
+    onNameChordClick: () -> Unit
+) {
     Surface(color = MaterialTheme.colors.background) {
         Scaffold(
             topBar = { ChordKingAppBar() }
@@ -49,8 +53,9 @@ fun ChordKingHomeScreen() {
                     Colors.Purple300
                 }
                 HomeSelectionCard(
-                    text = stringResource(Strings.build_a_chord),
-                    backgroundColor = buildAChordBackgroundColor
+                    text = stringResource(Strings.home_screen_build_a_chord),
+                    backgroundColor = buildAChordBackgroundColor,
+                    onClick = onBuildChordClick,
                 )
 
                 val nameThatChordBackgroundColor = if (isSystemInDarkTheme()) {
@@ -59,8 +64,9 @@ fun ChordKingHomeScreen() {
                     Colors.Blue300
                 }
                 HomeSelectionCard(
-                    text = "Name that chord",
-                    backgroundColor = nameThatChordBackgroundColor
+                    text = stringResource(Strings.home_screen_name_that_chord),
+                    backgroundColor = nameThatChordBackgroundColor,
+                    onClick = onNameChordClick
                 )
             }
         }
@@ -70,7 +76,8 @@ fun ChordKingHomeScreen() {
 @Composable
 private fun ColumnScope.HomeSelectionCard(
     text: String,
-    backgroundColor: Color
+    backgroundColor: Color,
+    onClick: () -> Unit
 ) {
     Card(
         modifier = Modifier
@@ -79,7 +86,7 @@ private fun ColumnScope.HomeSelectionCard(
             .clickable(
                 interactionSource = remember { MutableInteractionSource() },
                 indication = rememberRipple(),
-                onClick = {}
+                onClick = onClick
             ),
         backgroundColor = backgroundColor,
         elevation = 8.dp,
@@ -91,6 +98,7 @@ private fun ColumnScope.HomeSelectionCard(
         ) {
             Text(
                 text = text,
+                textAlign = TextAlign.Center,
                 color = Color.White,
                 fontSize = 32.sp
             )
