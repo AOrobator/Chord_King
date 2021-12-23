@@ -3,11 +3,16 @@ package com.orobator.chordking
 import android.os.Bundle
 import androidx.activity.ComponentActivity
 import androidx.activity.compose.setContent
+import androidx.compose.foundation.clickable
+import androidx.compose.foundation.interaction.MutableInteractionSource
+import androidx.compose.foundation.isSystemInDarkTheme
 import androidx.compose.foundation.layout.*
 import androidx.compose.foundation.layout.Arrangement.Absolute.spacedBy
 import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.material.*
+import androidx.compose.material.ripple.rememberRipple
 import androidx.compose.runtime.Composable
+import androidx.compose.runtime.remember
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
@@ -41,14 +46,24 @@ fun ChordKingHomeScreen() {
                 ),
                 verticalArrangement = spacedBy(32.dp)
             ) {
+                val buildAChordBackgroundColor = if (isSystemInDarkTheme()) {
+                    Colors.DeepPurple400
+                } else {
+                    Colors.Purple300
+                }
                 HomeSelectionCard(
                     text = "Build a chord",
-                    backgroundColor = Colors.Purple300
+                    backgroundColor = buildAChordBackgroundColor
                 )
 
+                val nameThatChordBackgroundColor = if (isSystemInDarkTheme()) {
+                    Colors.Blue400
+                } else {
+                    Colors.Blue300
+                }
                 HomeSelectionCard(
                     text = "Name that chord",
-                    backgroundColor = Colors.Blue300
+                    backgroundColor = nameThatChordBackgroundColor
                 )
             }
         }
@@ -63,7 +78,12 @@ private fun ColumnScope.HomeSelectionCard(
     Card(
         modifier = Modifier
             .weight(1f)
-            .fillMaxWidth(),
+            .fillMaxWidth()
+            .clickable(
+                interactionSource = remember { MutableInteractionSource() },
+                indication = rememberRipple(),
+                onClick = {}
+            ),
         backgroundColor = backgroundColor,
         elevation = 8.dp,
         shape = RoundedCornerShape(24.dp)
