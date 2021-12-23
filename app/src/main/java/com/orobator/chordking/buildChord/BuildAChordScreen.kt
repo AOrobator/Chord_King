@@ -4,15 +4,18 @@ import androidx.compose.foundation.background
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.padding
+import androidx.compose.material.Icon
+import androidx.compose.material.IconButton
 import androidx.compose.material.Scaffold
 import androidx.compose.material.Text
 import androidx.compose.material.TopAppBar
+import androidx.compose.material.icons.Icons
+import androidx.compose.material.icons.filled.ArrowBack
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.text.style.TextAlign
-import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import com.orobator.chordking.ui.theme.ChordKingTheme
@@ -20,10 +23,12 @@ import com.orobator.chordking.ui.theme.Colors
 import com.orobator.chordking.ui.theme.Strings
 
 @Composable
-fun BuildAChordScreen() {
+fun BuildAChordScreen(
+    onBack: () -> Unit
+) {
     ChordKingTheme {
         Scaffold(
-            topBar = { BuildAChordAppBar() }
+            topBar = { BuildAChordAppBar(onBack) }
         ) {
             Column {
                 Text(
@@ -50,7 +55,9 @@ fun BuildAChordScreen() {
 }
 
 @Composable
-private fun BuildAChordAppBar() {
+private fun BuildAChordAppBar(
+    onBack: () -> Unit
+) {
     TopAppBar(
         backgroundColor = Colors.buildAChordBackgroundColor,
         title = {
@@ -58,12 +65,15 @@ private fun BuildAChordAppBar() {
                 text = stringResource(Strings.build_a_chord_title),
                 color = Color.White,
             )
+        },
+        navigationIcon = {
+            IconButton(onClick = onBack) {
+                Icon(
+                    imageVector = Icons.Filled.ArrowBack,
+                    contentDescription = stringResource(Strings.content_description_navigate_up),
+                    tint = Color.White
+                )
+            }
         }
     )
-}
-
-@Preview
-@Composable
-fun BuildAChordScreenPreview() {
-    BuildAChordScreen()
 }

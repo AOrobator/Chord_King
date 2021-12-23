@@ -23,7 +23,7 @@ fun ChordKingNavHost() {
         composable(
             Destinations.Home.name,
             enterTransition = {
-                slideInHorizontally(initialOffsetX = { -1000 })
+                slideInHorizontally(initialOffsetX = { -it })
             },
             exitTransition = {
                 slideOutHorizontally(targetOffsetX = { -it })
@@ -38,19 +38,29 @@ fun ChordKingNavHost() {
         composable(
             Destinations.BuildAChord.name,
             enterTransition = {
-                slideInHorizontally(initialOffsetX = { 1000 })
+                slideInHorizontally(initialOffsetX = { it })
+            },
+            exitTransition = {
+                slideOutHorizontally(targetOffsetX = { it })
             }
         ) {
-            BuildAChordScreen()
+            BuildAChordScreen(
+                onBack = { navController.navigateUp() }
+            )
         }
 
         composable(
             Destinations.NameThatChord.name,
             enterTransition = {
-                slideInHorizontally(initialOffsetX = { 1000 })
+                slideInHorizontally(initialOffsetX = { it })
+            },
+            exitTransition = {
+                slideOutHorizontally(targetOffsetX = { it })
             }
         ) {
-            NameThatChordScreen()
+            NameThatChordScreen(
+                onBack = { navController.navigateUp() }
+            )
         }
     }
 }
