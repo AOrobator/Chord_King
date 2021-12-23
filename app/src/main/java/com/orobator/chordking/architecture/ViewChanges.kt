@@ -9,7 +9,7 @@ interface ViewChange {
     fun sanitizedToString(): String {
         val rawString = this.toString()
 
-        return if (rawString.startsWith("com.geneva.chat")) {
+        return if (rawString.startsWith("com.orobator.chordking")) {
             this::class.java.simpleName
         } else {
             rawString

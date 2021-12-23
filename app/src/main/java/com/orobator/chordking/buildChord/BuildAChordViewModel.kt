@@ -1,12 +1,17 @@
 package com.orobator.chordking.buildChord
 
-import com.orobator.chordking.ui.components.SnackbarMessage
 import com.orobator.chordking.architecture.BaseViewModel
 import com.orobator.chordking.architecture.ViewState
+import com.orobator.chordking.ui.components.SnackbarMessage
 import com.orobator.chordking.ui.theme.Strings
 
 class BuildAChordViewModel : BaseViewModel<BuildAChordViewState>(
-    initialState = BuildAChordViewState()
+    initialState = BuildAChordViewState(
+        chordToBuild = Chord(
+            key = majorScales.keys.random(),
+            quality = ChordQuality.values().random()
+        )
+    )
 ) {
 
     fun onNoteClick(note: Note) {
@@ -36,6 +41,15 @@ class BuildAChordViewModel : BaseViewModel<BuildAChordViewState>(
                         titleRes = Strings.build_a_chord_correct,
                         onDismiss = ::onDismissSnackbar
                     )
+                )
+            }
+
+            val newKey = majorScales.keys.random()
+            val quality = ChordQuality.values().random()
+            updateState {
+                copy(
+                    chordToBuild = Chord(key = newKey, quality = quality),
+                    enteredNotes = emptyList()
                 )
             }
         } else {

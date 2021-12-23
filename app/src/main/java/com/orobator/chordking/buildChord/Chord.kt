@@ -5,6 +5,7 @@ import com.orobator.chordking.buildChord.Note.NoteAFlat
 import com.orobator.chordking.buildChord.Note.NoteASharp
 import com.orobator.chordking.buildChord.Note.NoteB
 import com.orobator.chordking.buildChord.Note.NoteBFlat
+import com.orobator.chordking.buildChord.Note.NoteBSharp
 import com.orobator.chordking.buildChord.Note.NoteC
 import com.orobator.chordking.buildChord.Note.NoteCFlat
 import com.orobator.chordking.buildChord.Note.NoteCSharp
@@ -15,6 +16,7 @@ import com.orobator.chordking.buildChord.Note.NoteE
 import com.orobator.chordking.buildChord.Note.NoteEFlat
 import com.orobator.chordking.buildChord.Note.NoteESharp
 import com.orobator.chordking.buildChord.Note.NoteF
+import com.orobator.chordking.buildChord.Note.NoteFFlat
 import com.orobator.chordking.buildChord.Note.NoteFSharp
 import com.orobator.chordking.buildChord.Note.NoteG
 import com.orobator.chordking.buildChord.Note.NoteGFlat
@@ -33,15 +35,8 @@ data class Chord(
 }
 
 val majorScales = mapOf(
-    NoteFSharp to listOf(
-        NoteFSharp,
-        NoteGSharp,
-        NoteASharp,
-        NoteB,
-        NoteCSharp,
-        NoteDSharp,
-        NoteESharp
-    ),
+    NoteCSharp to listOf(NoteCSharp, NoteDSharp, NoteESharp, NoteFSharp, NoteGSharp, NoteASharp, NoteBSharp),
+    NoteFSharp to listOf(NoteFSharp, NoteGSharp, NoteASharp, NoteB, NoteCSharp, NoteDSharp, NoteESharp),
     NoteB to listOf(NoteB, NoteCSharp, NoteDSharp, NoteE, NoteFSharp, NoteGSharp, NoteASharp),
     NoteE to listOf(NoteE, NoteFSharp, NoteGSharp, NoteA, NoteB, NoteCSharp, NoteDSharp),
     NoteA to listOf(NoteA, NoteB, NoteCSharp, NoteD, NoteE, NoteFSharp, NoteGSharp),
@@ -56,6 +51,7 @@ val majorScales = mapOf(
     NoteAFlat to listOf(NoteAFlat, NoteBFlat, NoteC, NoteDFlat, NoteEFlat, NoteF, NoteG),
     NoteDFlat to listOf(NoteDFlat, NoteEFlat, NoteF, NoteGFlat, NoteAFlat, NoteBFlat, NoteC),
     NoteGFlat to listOf(NoteGFlat, NoteAFlat, NoteBFlat, NoteCFlat, NoteDFlat, NoteEFlat, NoteF),
+    NoteCFlat to listOf(NoteCFlat, NoteDFlat, NoteEFlat, NoteFFlat, NoteGFlat, NoteAFlat, NoteBFlat),
 )
 
 enum class ChordQuality(val qualityName: String) {
