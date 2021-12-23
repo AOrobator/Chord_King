@@ -44,11 +44,15 @@ class BuildAChordViewModel : BaseViewModel<BuildAChordViewState>(
                 )
             }
 
-            val newKey = majorScales.keys.random()
-            val quality = ChordQuality.values().random()
+            var newChord = viewState.chordToBuild
+            while (newChord == viewState.chordToBuild) {
+                val newKey = majorScales.keys.random()
+                val quality = ChordQuality.values().random()
+                newChord = Chord(key = newKey, quality = quality)
+            }
             updateState {
                 copy(
-                    chordToBuild = Chord(key = newKey, quality = quality),
+                    chordToBuild = newChord,
                     enteredNotes = emptyList()
                 )
             }

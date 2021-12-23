@@ -63,11 +63,20 @@ enum class ChordQuality(val qualityName: String) {
             val perfectFifth = scale[4]
             return listOf(root, majorThird, perfectFifth)
         }
-    };
+    },
 //    Minor("m"),
 //    Diminished("dim"),
 //    Augmented("aug"),
-//    Major7("maj7"),
+    Major7("maj7") {
+    override fun getChordTones(scale: List<Note>): List<Note> {
+        checkScale(scale)
+        val root = scale[0]
+        val majorThird = scale[2]
+        val perfectFifth = scale[4]
+        val majorSeventh = scale[6]
+        return listOf(root, majorThird, perfectFifth, majorSeventh)
+    }
+};
 //    Minor7("min7"),
 //    Dominant7("7"),
 //    MinorMajor7("minMaj7");
