@@ -45,6 +45,7 @@ dependencies {
     implementation("androidx.appcompat:appcompat:1.4.0")
     implementation("com.google.android.material:material:1.4.0")
 
+    implementation(Libs.Accompanist.flowLayout)
     implementation(Libs.Accompanist.navigationAnimation)
     implementation(Libs.Compose.activity)
     implementation(Libs.Compose.material)

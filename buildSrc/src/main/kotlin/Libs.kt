@@ -2,6 +2,7 @@ object Libs {
     object Accompanist {
         const val version = "0.22.0-rc"
         const val navigationAnimation =  "com.google.accompanist:accompanist-navigation-animation:$version"
+        const val flowLayout = "com.google.accompanist:accompanist-flowlayout:$version"
     }
 
     object Compose {

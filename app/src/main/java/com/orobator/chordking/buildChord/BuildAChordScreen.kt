@@ -4,6 +4,8 @@ import androidx.compose.foundation.background
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.padding
+import androidx.compose.foundation.layout.width
+import androidx.compose.material.Button
 import androidx.compose.material.Icon
 import androidx.compose.material.IconButton
 import androidx.compose.material.Scaffold
@@ -18,6 +20,9 @@ import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
+import com.google.accompanist.flowlayout.FlowRow
+import com.google.accompanist.flowlayout.MainAxisAlignment
+import com.orobator.chordking.buildChord.Note.NoteEFlat
 import com.orobator.chordking.ui.theme.ChordKingTheme
 import com.orobator.chordking.ui.theme.Colors
 import com.orobator.chordking.ui.theme.Strings
@@ -35,7 +40,7 @@ fun BuildAChordScreen(
                     modifier = Modifier
                         .fillMaxWidth()
                         .padding(24.dp),
-                    text = stringResource(id = Strings.build_a_chord_prompt, "E♭"),
+                    text = stringResource(Strings.build_a_chord_prompt, NoteEFlat.noteName),
                     textAlign = TextAlign.Center,
                     fontSize = 32.sp,
                 )
@@ -49,6 +54,32 @@ fun BuildAChordScreen(
                     color = Color.White,
                     textAlign = TextAlign.Center
                 )
+
+                NoteEntryPad(
+                    modifier = Modifier
+                        .fillMaxWidth()
+                        .weight(1f)
+                        .padding(16.dp)
+                )
+            }
+        }
+    }
+}
+
+@Composable
+private fun NoteEntryPad(modifier: Modifier) {
+    FlowRow(
+        modifier = modifier,
+        mainAxisSpacing = 24.dp,
+        mainAxisAlignment = MainAxisAlignment.SpaceEvenly,
+        crossAxisSpacing = 24.dp
+    ) {
+        for (note in Note.values()) {
+            Button(
+                modifier = Modifier.width(64.dp),
+                onClick = { /*TODO*/ }
+            ) {
+                Text(text = note.noteName)
             }
         }
     }
