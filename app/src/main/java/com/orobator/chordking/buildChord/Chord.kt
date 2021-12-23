@@ -142,8 +142,18 @@ enum class ChordQuality(val qualityName: String) {
             val minorSeventh = minorScale[6]
             return listOf(root, minorThird, perfectFifth, minorSeventh)
         }
+    },
+    Dominant7("7") {
+        override fun getChordTones(key: Note): List<Note>? {
+            val majorScale = majorScales[key]!!
+            val minorScale = minorScales[key] ?: return null
+            val root = majorScale[0]
+            val majorThird = majorScale[2]
+            val perfectFifth = majorScale[4]
+            val minorSeventh = minorScale[6]
+            return listOf(root, majorThird, perfectFifth, minorSeventh)
+        }
     };
-//    Dominant7("7"),
 //    MinorMajor7("minMaj7");
 
     abstract fun getChordTones(key: Note): List<Note>?
