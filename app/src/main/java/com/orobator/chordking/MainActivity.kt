@@ -3,9 +3,7 @@ package com.orobator.chordking
 import android.os.Bundle
 import androidx.activity.ComponentActivity
 import androidx.activity.compose.setContent
-import androidx.compose.material.MaterialTheme
-import androidx.compose.material.Surface
-import androidx.compose.material.Text
+import androidx.compose.material.*
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.tooling.preview.Preview
 import com.orobator.chordking.ui.theme.ChordKingTheme
@@ -15,24 +13,34 @@ class MainActivity : ComponentActivity() {
         super.onCreate(savedInstanceState)
         setContent {
             ChordKingTheme {
-                // A surface container using the 'background' color from the theme
-                Surface(color = MaterialTheme.colors.background) {
-                    Greeting("Android")
-                }
+                ChordKingHomeScreen()
             }
         }
     }
 }
 
 @Composable
-fun Greeting(name: String) {
-    Text(text = "Hello $name!")
+fun ChordKingHomeScreen() {
+    Surface(color = MaterialTheme.colors.background) {
+        Scaffold(
+            topBar = { ChordKingAppBar() }
+        ) {
+
+        }
+    }
+}
+
+@Composable
+private fun ChordKingAppBar() {
+    TopAppBar(
+        title = { Text(text = "👑 Chord King") }
+    )
 }
 
 @Preview(showBackground = true)
 @Composable
 fun DefaultPreview() {
     ChordKingTheme {
-        Greeting("Android")
+        ChordKingHomeScreen()
     }
 }

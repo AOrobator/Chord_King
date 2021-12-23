@@ -1,0 +1,15 @@
+object Libs {
+    object Compose {
+        const val version = "1.1.0-beta03"
+        const val activity = "androidx.activity:activity-compose:1.4.0"
+        const val constraintLayout = "androidx.constraintlayout:constraintlayout-compose:1.0.0-rc01"
+        const val foundation = "androidx.compose.foundation:foundation:$version"
+        const val lifecycle = "androidx.lifecycle:lifecycle-viewmodel-compose:2.4.0"
+        const val liveData = "androidx.compose.runtime:runtime-livedata:$version"
+        const val material = "androidx.compose.material:material:$version"
+        const val navigation = "androidx.navigation:navigation-compose:2.4.0-beta02"
+        const val ui = "androidx.compose.ui:ui:$version"
+        const val uiTooling = "androidx.compose.ui:ui-tooling:$version"
+        const val uiToolingPreview = "androidx.compose.ui:ui-tooling-preview:$version"
+    }
+}
