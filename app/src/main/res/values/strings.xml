@@ -6,9 +6,11 @@
     <string name="home_screen_name_that_chord">🧐\n\nName that chord</string>
 
     <string name="build_a_chord_title">🛠 Build a chord</string>
-    <string name="build_a_chord_prompt">Build: <i>%s</i></string>
+    <string name="build_a_chord_prompt">Build <i>%s</i></string>
     <string name="build_a_chord_delete_note">Delete</string>
     <string name="build_a_chord_done">Done</string>
+    <string name="build_a_chord_correct">🎉 Correct! 🎉</string>
+    <string name="build_a_chord_try_again">Try again</string>
 
     <string name="name_that_chord_title">🧐 Name that chord</string>
 </resources>

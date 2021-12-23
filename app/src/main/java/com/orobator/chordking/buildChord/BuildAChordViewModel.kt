@@ -1,7 +1,9 @@
 package com.orobator.chordking.buildChord
 
+import com.orobator.chordking.ui.components.SnackbarMessage
 import com.orobator.chordking.architecture.BaseViewModel
 import com.orobator.chordking.architecture.ViewState
+import com.orobator.chordking.ui.theme.Strings
 
 class BuildAChordViewModel : BaseViewModel<BuildAChordViewState>(
     initialState = BuildAChordViewState()
@@ -24,9 +26,33 @@ class BuildAChordViewModel : BaseViewModel<BuildAChordViewState>(
     }
 
     fun onDoneClick() {
+        val chordTones = viewState.chordToBuild.notes()
+        val enteredNotes = viewState.enteredNotes
 
+        if (chordTones == enteredNotes) {
+            updateState {
+                copy(
+                    snackbarMessage = SnackbarMessage.InfoMessage(
+                        titleRes = Strings.build_a_chord_correct,
+                        onDismiss = ::onDismissSnackbar
+                    )
+                )
+            }
+        } else {
+            updateState {
+                copy(
+                    snackbarMessage = SnackbarMessage.ErrorMessage(
+                        titleRes = Strings.build_a_chord_try_again,
+                        onDismiss = ::onDismissSnackbar
+                    )
+                )
+            }
+        }
     }
 
+    private fun onDismissSnackbar() {
+        updateState { copy(snackbarMessage = null) }
+    }
 }
 
 data class BuildAChordViewState(
@@ -34,5 +60,6 @@ data class BuildAChordViewState(
         key = Note.NoteEFlat,
         quality = ChordQuality.Major
     ),
-    val enteredNotes: List<Note> = emptyList()
+    val enteredNotes: List<Note> = emptyList(),
+    val snackbarMessage: SnackbarMessage? = null
 ) : ViewState

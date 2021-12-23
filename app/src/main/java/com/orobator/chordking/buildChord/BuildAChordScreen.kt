@@ -8,7 +8,6 @@ import androidx.compose.foundation.layout.width
 import androidx.compose.material.Button
 import androidx.compose.material.Icon
 import androidx.compose.material.IconButton
-import androidx.compose.material.Scaffold
 import androidx.compose.material.Text
 import androidx.compose.material.TopAppBar
 import androidx.compose.material.icons.Icons
@@ -22,6 +21,7 @@ import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import com.google.accompanist.flowlayout.FlowRow
 import com.google.accompanist.flowlayout.MainAxisAlignment
+import com.orobator.chordking.ui.components.ChordKingScaffold
 import com.orobator.chordking.ui.theme.ChordKingTheme
 import com.orobator.chordking.ui.theme.Colors
 import com.orobator.chordking.ui.theme.Strings
@@ -35,8 +35,9 @@ fun BuildAChordScreen(
     onBack: () -> Unit
 ) {
     ChordKingTheme {
-        Scaffold(
-            topBar = { BuildAChordAppBar(onBack) }
+        ChordKingScaffold(
+            topBar = { BuildAChordAppBar(onBack) },
+            snackbarMessage = viewState.snackbarMessage
         ) {
             Column {
                 Text(

@@ -26,3 +26,18 @@ val Typography = Typography(
     )
     */
 )
+
+object ChordKingTypography {
+        val h3: TextStyle = TextStyle(
+                fontSize = 15.sp,
+                fontWeight = FontWeight.SemiBold,
+                letterSpacing = 0.sp,
+                lineHeight = 18.sp,
+        )
+        val h4: TextStyle = TextStyle(
+                fontSize = 15.sp,
+                fontWeight = FontWeight.Medium,
+                letterSpacing = 0.sp,
+                lineHeight = 18.sp,
+        )
+}
