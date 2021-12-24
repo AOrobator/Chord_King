@@ -153,8 +153,18 @@ enum class ChordQuality(val qualityName: String) {
             val minorSeventh = minorScale[6]
             return listOf(root, majorThird, perfectFifth, minorSeventh)
         }
+    },
+    MinorMajor7("minMaj7") {
+        override fun getChordTones(key: Note): List<Note>? {
+            val majorScale = majorScales[key]!!
+            val minorScale = minorScales[key] ?: return null
+            val root = minorScale[0]
+            val minorThird = minorScale[2]
+            val perfectFifth = minorScale[4]
+            val majorSeventh = majorScale[6]
+            return listOf(root, minorThird, perfectFifth, majorSeventh)
+        }
     };
-//    MinorMajor7("minMaj7");
 
     abstract fun getChordTones(key: Note): List<Note>?
 }
