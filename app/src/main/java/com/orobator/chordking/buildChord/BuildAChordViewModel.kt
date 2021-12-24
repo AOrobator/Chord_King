@@ -49,6 +49,7 @@ class BuildAChordViewModel : BaseViewModel<BuildAChordViewState>(
             }
 
             var newChord = viewState.chordToBuild
+            // Ensure new chord is different from last chord
             while (newChord == viewState.chordToBuild || newChord.chordTones() == null) {
                 val newKey = majorScales.keys.random()
                 val quality = ChordQuality.values().random()
