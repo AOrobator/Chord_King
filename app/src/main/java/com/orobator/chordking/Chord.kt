@@ -97,6 +97,28 @@ val minorScales = mapOf(
     NoteCFlat to null,
 )
 
+val flatFives = mapOf(
+    NoteCFlat to NoteB,
+    NoteGFlat to NoteC,
+    NoteDFlat to NoteB,
+    NoteAFlat to NoteD,
+    NoteEFlat to NoteA,
+    NoteBFlat to NoteFFlat,
+    NoteF to NoteCFlat,
+
+    NoteC to NoteGFlat,
+
+    NoteG to NoteDFlat,
+    NoteD to NoteAFlat,
+    NoteA to NoteEFlat,
+    NoteE to NoteBFlat,
+    NoteB to NoteF,
+
+    NoteFSharp to NoteC,
+    NoteCSharp to NoteG,
+    NoteGSharp to NoteD,
+)
+
 fun List<Note>.toRelativeMinor(): List<Note> {
     return slice(5..6) + slice(0..4)
 }
@@ -184,6 +206,16 @@ enum class ChordQuality(val qualityName: String) {
             val perfectFifth = minorScale[4]
             val majorSeventh = majorScale[6]
             return listOf(root, minorThird, perfectFifth, majorSeventh)
+        }
+    },
+    Minor7Flat5("-7♭5") {
+        override fun getChordTones(key: Note): List<Note>? {
+            val minorScale = minorScales[key] ?: return null
+            val root = minorScale[0]
+            val minorThird = minorScale[2]
+            val flatFifth = flatFives[key] ?: return null
+            val minorSeventh = minorScale[6]
+            return listOf(root, minorThird, flatFifth, minorSeventh)
         }
     };
 
