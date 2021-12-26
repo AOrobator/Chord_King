@@ -34,11 +34,18 @@ fun BuildAChordScreen(
     onNoteClick: (Note) -> Unit,
     onDeleteNoteClick: () -> Unit,
     onDoneClick: () -> Unit,
-    onBack: () -> Unit
+    onBack: () -> Unit,
+    onBuildAChordSettingsClick: () -> Unit
 ) {
     ChordKingTheme {
         ChordKingScaffold(
-            topBar = { BuildAChordAppBar(onBack) },
+            topBar = {
+                BuildAChordAppBar(
+                    viewState,
+                    onBack,
+                    onBuildAChordSettingsClick
+                )
+            },
             snackbarMessage = viewState.snackbarMessage
         ) {
             Column {
@@ -118,7 +125,9 @@ private fun NoteEntryPad(
 
 @Composable
 private fun BuildAChordAppBar(
-    onBack: () -> Unit
+    viewState: BuildAChordViewState,
+    onBack: () -> Unit,
+    onBuildAChordSettingsClick: () -> Unit
 ) {
     TopAppBar(
         backgroundColor = Colors.buildAChordBackgroundColor,
@@ -136,6 +145,24 @@ private fun BuildAChordAppBar(
                     tint = Color.White
                 )
             }
+        },
+        actions = {
+            val percentageText =
+                if (viewState.correctPercentage.isEmpty()) "" else ", ${viewState.correctPercentage}"
+            val correctAnswersFraction =
+                "${viewState.correctAnswers}/${viewState.questionsAnswered}"
+            Text(
+                text = correctAnswersFraction + percentageText,
+                color = Color.White
+            )
+
+//            IconButton(onClick = onBuildAChordSettingsClick) {
+//                Icon(
+//                    imageVector = Icons.Filled.Settings,
+//                    contentDescription = stringResource(Strings.settings),
+//                    tint = Color.White
+//                )
+//            }
         }
     )
 }

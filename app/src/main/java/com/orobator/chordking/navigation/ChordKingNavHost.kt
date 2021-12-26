@@ -13,7 +13,6 @@ import com.orobator.chordking.buildChord.BuildAChordViewModel
 import com.orobator.chordking.home.ChordKingHomeScreen
 import com.orobator.chordking.nameChord.NameThatChordScreen
 
-
 @ExperimentalAnimationApi
 @Composable
 fun ChordKingNavHost(
@@ -54,7 +53,8 @@ fun ChordKingNavHost(
                 onBack = { navController.navigateUp() },
                 onNoteClick = buildAChordViewModel::onNoteClick,
                 onDoneClick = buildAChordViewModel::onDoneClick,
-                onDeleteNoteClick = buildAChordViewModel::onDeleteNote
+                onDeleteNoteClick = buildAChordViewModel::onDeleteNote,
+                onBuildAChordSettingsClick = {}
             )
         }
 

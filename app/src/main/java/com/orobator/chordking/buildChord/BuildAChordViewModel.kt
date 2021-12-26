@@ -11,10 +11,7 @@ import com.orobator.chordking.ui.theme.Strings
 
 class BuildAChordViewModel : BaseViewModel<BuildAChordViewState>(
     initialState = BuildAChordViewState(
-        chordToBuild = Chord(
-            key = majorScales.keys.random(),
-            quality = ChordQuality.values().random()
-        )
+        chordToBuild = getInitialChord()
     )
 ) {
 
@@ -35,12 +32,17 @@ class BuildAChordViewModel : BaseViewModel<BuildAChordViewState>(
     }
 
     fun onDoneClick() {
+        updateState {
+            copy(questionsAnswered = viewState.questionsAnswered + 1)
+        }
+
         val chordTones = viewState.chordToBuild.chordTones()!!
         val enteredNotes = viewState.enteredNotes
 
         if (chordTones == enteredNotes) {
             updateState {
                 copy(
+                    correctAnswers = viewState.correctAnswers + 1,
                     snackbarMessage = SnackbarMessage.InfoMessage(
                         titleRes = Strings.build_a_chord_correct,
                         onDismiss = ::onDismissSnackbar
@@ -71,10 +73,29 @@ class BuildAChordViewModel : BaseViewModel<BuildAChordViewState>(
                 )
             }
         }
+
+        updateState {
+            copy(
+                correctPercentage = "${((correctAnswers.toDouble() / questionsAnswered) * 100).toInt()}%"
+            )
+        }
     }
 
     private fun onDismissSnackbar() {
         updateState { copy(snackbarMessage = null) }
+    }
+}
+
+private fun getInitialChord(): Chord {
+    while (true) {
+        val key = majorScales.keys.random()
+        val quality = ChordQuality.values().random()
+
+        val chord = Chord(key, quality)
+
+        if (chord.chordTones() != null) {
+            return chord
+        }
     }
 }
 
@@ -84,5 +105,8 @@ data class BuildAChordViewState(
         quality = ChordQuality.Major
     ),
     val enteredNotes: List<Note> = emptyList(),
-    val snackbarMessage: SnackbarMessage? = null
+    val snackbarMessage: SnackbarMessage? = null,
+    val questionsAnswered: Int = 0,
+    val correctAnswers: Int = 0,
+    val correctPercentage: String = ""
 ) : ViewState
